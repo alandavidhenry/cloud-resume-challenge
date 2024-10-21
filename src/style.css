@@ -1,0 +1,78 @@
+body {
+  font-family: "Raleway";
+  margin: 0;
+  padding: 0;
+}
+
+header {
+    background-color: grey;
+    margin: 0;
+    padding: 1rem 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+main {
+    margin: 0 3rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 2rem 0 0.8rem 0;
+}
+h2 {
+  font-size: 2rem;
+  margin: 0 0 0 0;
+}
+h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.8rem 0;
+}
+h4 {
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
+h5 {
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem 0;
+}
+p {
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+}
+ul {
+  font-size: 1rem;
+}
+li {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.links {
+    text-align: right;
+}
+
+.profile {
+    margin: 1.3rem 0 1.2rem 0;
+}
+
+.skills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.skills-col-2 {
+    margin: 3rem 0 0 0;
+}
+
+.education {
+    margin: 0 0 1.5rem 0;
+}
+
+.certifications {
+    margin: 0 0 1.5rem 0;
+}
