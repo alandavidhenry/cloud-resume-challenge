@@ -76,3 +76,9 @@ li {
 .certifications {
     margin: 0 0 1.5rem 0;
 }
+
+.visitor-counter {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
