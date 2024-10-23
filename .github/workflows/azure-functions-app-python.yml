@@ -21,6 +21,13 @@ name: Deploy Python project to Azure Function App
 on:
   push:
     branches: ["main"]
+    paths:
+      - 'function/**'
+      - '!function/.venv/**'
+      - '!function/__pycache/**'
+      - '!function/.gitignore'
+      - '!function/local.settings.json'
+      - '!function/test_function_app.py'
 
 env:
   AZURE_FUNCTIONAPP_NAME: 'func-cloud-resume-challenge'   # set this to your function app name on Azure
