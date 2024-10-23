@@ -1,0 +1,57 @@
+name: Sync to Azure Storage
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+
+jobs:
+  upload-to-azure:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Upload to Azure Storage
+      uses: azure/CLI@v2
+      with:
+        inlineScript: |
+          # Remove existing files (optional, comment out if not needed)
+          az storage blob delete-batch \
+            --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} \
+            --auth-mode key \
+            --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} \
+            --source '$web'
+            
+          # Upload new files
+          az storage blob upload-batch \
+            --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} \
+            --auth-mode key \
+            --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} \
+            --source "src" \
+            --destination '$web' \
+            --pattern "*" \
+            --overwrite true
+    
+    - name: Upload to Azure Storage
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+            az cdn endpoint purge \
+                --resource-group ${{ secrets.RESOURCE_GROUP }} \
+                --profile-name ${{ secrets.CDN_PROFILE_NAME }} \
+                --name ${{ secrets.CDN_ENDPOINT_NAME }} \
+                --content-paths "/*"
+
+            echo "Waiting for CDN purge to complete..."
+            sleep 30
+
+    - name: Azure Logout
+      run: |
+        az logout
