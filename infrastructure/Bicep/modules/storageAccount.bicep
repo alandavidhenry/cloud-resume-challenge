@@ -12,11 +12,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   kind: 'StorageV2'
   properties: {
     dnsEndpointType: 'Standard'
-    defaultToOAuthAuthentication: true
+    defaultToOAuthAuthentication: false
     publicNetworkAccess: 'Enabled'
     allowCrossTenantReplication: false
     minimumTlsVersion: 'TLS1_2'
-    allowBlobPublicAccess: false
+    allowBlobPublicAccess: true
+    allowSharedKeyAccess: true
+    largeFileSharesState: 'Enabled'
     networkAcls: {
       bypass: 'AzureServices'
       virtualNetworkRules: []
@@ -65,7 +67,7 @@ resource webContainer 'Microsoft.Storage/storageAccounts/blobServices/containers
     }
     defaultEncryptionScope: '$account-encryption-key'
     denyEncryptionScopeOverride: false
-    publicAccess: 'None'
+    publicAccess: 'Container'
   }
 }
 
