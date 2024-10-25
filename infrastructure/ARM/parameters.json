@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_func_cloud_resume_challenge_name": {
+            "value": null
+        },
+        "storageAccounts_stcloudresumech_name": {
+            "value": null
+        },
+        "profiles_cdnp_cloud_resume_challenge_name": {
+            "value": null
+        },
+        "serverfarms_ASP_rgcloudresumechallenge_84ba_name": {
+            "value": null
+        },
+        "databaseAccounts_cosno_cloud_resume_challenge_name": {
+            "value": null
+        }
+    }
+}
