@@ -53,3 +53,24 @@ I created continuous integration and deployment (CI/CD) pipelines using GitHub A
 
 ### 16.  Blog post
 I will write a blog on the challenge and post it on [my own website](https://alan-henry.co.uk/). For now, I have posted a copy of this readme.
+
+## Deployment instructions
+
+1. Run the following command to deploy the Bicep IaC to your Azure Subscription:
+    ```bash
+    az deployment sub create --location uksouth --template-file infrastructure/Bicep/main.bicep --parameters infrastructure/Bicep/main.bicepparam 
+    ```    
+
+2. Run the following to enable static website hosting on the `$web` container:
+    ```bash
+    az storage blob service-properties update --account-name <storage_account_name> --static-website --404-document 404.html --index-document index.html
+    ```
+
+3. Use the following command to copy the website files to the `$web` container:
+    ```bash
+    az storage blob upload-batch --account-name <storage_account_name> --account-key $(az storage account keys list -n <storage_account_name> -g rg-cloud-resume-challenge --query '[0].value' -o tsv) --destination '$web' --source src --pattern "*" --overwrite true
+    ```
+
+4. Use the VSCode Azure Extension to deploy the function.
+
+5. Set up the custom domain name.
